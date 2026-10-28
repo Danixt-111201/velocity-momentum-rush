@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071525">
+  <title>Velocity: Momentum Rush | Actividad 03</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="level-map.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <div class="topbar"><div><span class="marker">V / MR</span><strong>Velocity: Momentum Rush</strong><span class="subtitle">Actividad 03 · Prototipo digital</span></div><button id="restart" type="button">Reiniciar · R</button></div>
+    <div class="viewport">
+      <canvas id="game" width="1120" height="560" aria-label="Juego de plataformas digital con tres secciones"></canvas>
+      <div id="overlay" class="overlay">
+        <section class="modal">
+          <div class="accent">PROTOTIPO DIGITAL · NIVEL 1</div>
+          <h1 id="modalTitle">Velocity: Momentum Rush</h1>
+          <p id="modalText">Tres secciones conectadas. Descubre las reglas del salto, cruza los peligros y alcanza la bandera.</p>
+          <div class="keys"><span>← / →</span> Dirección &nbsp; <span>Espacio</span> Salto &nbsp; <span>C</span> Mantener y soltar: salto cargado</div>
+          <button id="play" class="primary" type="button">Comenzar</button>
+          <p id="modalExtra" class="muted">El nivel enseña mediante sus formas, colores y movimientos; durante el juego no hay instrucciones escritas.</p>
+        </section>
+      </div>
+    </div>
+    <div class="progress" aria-hidden="true"><div id="progressBar"></div></div>
+    <p class="under">Versión digital del prototipo físico de tres pantallas · Hecho con Canvas y JavaScript · Sin frameworks externos</p>
+  </main>
+</body>
+</html>
