@@ -11,11 +11,6 @@ La evaluación prioriza **cómo el escenario enseña a jugar** y la transición 
 - **Variación:** rampa + anillos opcionales arriba / enemigo abajo = elección de riesgo y recompensa.
 - **Conclusión:** rampa, muelle y bandera exigen combinar las habilidades previamente enseñadas.
 
-Durante la presentación, explica **por qué** cada elemento está situado allí. Muestra una modificación de recompensa en el mapa para demostrar cómo la ubicación guía la atención del jugador. Los detalles técnicos son importantes porque permiten modificar el nivel rápidamente, pero no constituyen el tema central de la exposición.
-
-**Documentos actualizados:** `docs/Activity03_Design_Rationale_Design_Focus_English.pdf` es el informe principal en inglés de 3 páginas; `...Espanol.pdf` es una versión de apoyo. Las presentaciones, guiones de video, prueba humana pendiente y demostración en vivo están en `docs/01_...` a `docs/06_...`.
-
-**Pendiente real antes de entregar:** prueba con una persona (registrar observaciones en el informe), video narrado por ti, y publicación mediante enlace público. No presentar el borrador con campos vacíos como un playtest terminado.
 
 ## Ejecutar
 
@@ -35,8 +30,6 @@ Durante la presentación, explica **por qué** cada elemento está situado allí
 
 El muelle rojo impulsa al jugador de manera automática al aterrizar sobre él. Los anillos son recompensas opcionales. Los pinchos, las caídas y el enemigo provocan un reinicio rápido.
 
-**Importante para la rúbrica:** no hay instrucciones, etiquetas ni ventanas de texto mientras se juega. Únicamente en las pantallas inicial y final se utiliza texto explicativo.
-
 ## Mapa separado de la lógica
 
 El nivel está definido como **texto ASCII** en `level-map.js`, independiente del motor (`game.js`). Cada fila es una hilera de la cuadrícula y cada símbolo ocupa 40 × 40 px.
@@ -54,15 +47,6 @@ El nivel está definido como **texto ASCII** en `level-map.js`, independiente de
 | `=` | Plataforma elevada |
 | `F` | Meta / bandera |
 | `P` | Posición inicial |
-
-### Edición del mapa en vivo (para el profesor)
-
-1. Abre `level-map.js` con un editor de texto.
-2. En la zona de **SECTION 1**, sustituye uno de los puntos `.` por `O` para agregar un anillo, **sin alterar el ancho de la fila**.
-3. Guarda el archivo (`Ctrl + S`) y actualiza Chrome (`Ctrl + R`). Verás el anillo en su nueva posición.
-4. Puedes revertirlo sustituyendo nuevamente `O` por `.`.
-
-**Cuidado:** todas las filas del mapa deben conservar exactamente la misma longitud.
 
 ## Física agrupada al inicio
 
@@ -83,8 +67,6 @@ const PHYSICS = Object.freeze({
   ENEMY_SPEED: 58
 });
 ```
-
-**Demostración rápida en vivo:** cambia `NORMAL_JUMP_HEIGHT: 82` por `NORMAL_JUMP_HEIGHT: 110`, guarda, actualiza y realiza el salto normal. Después vuelve a poner el valor original. Si tu profesor desea cambiar fuerza del salto cargado, usa `CHARGED_JUMP_HEIGHT`.
 
 ## Requisitos evaluables
 
@@ -108,8 +90,7 @@ const PHYSICS = Object.freeze({
 
 ## Autoría y uso de IA
 
-Concepto, estructura física original y decisiones principales de diseño: proyecto de estudiante de la Actividad 02. Implementación del código, documentación y asistencia en revisión técnica: apoyo de ChatGPT. El estudiante debe poder explicar y cambiar `level-map.js` y las constantes `PHYSICS` en vivo, y debe obtener sus propios datos de playtest.
-
+Concepto, estructura física original y decisiones principales de diseño: proyecto de estudiante de la Actividad 02. Implementación del código, documentación y asistencia en revisión técnica: apoyo de ChatGPT. 
 ## Fecha de entrega
 
 **30 de octubre de 2026.**
