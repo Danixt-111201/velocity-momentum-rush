@@ -22,7 +22,7 @@ const overlay=document.querySelector('#overlay');
 const el=id=>document.getElementById(id);
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const LEVEL_ROWS=window.VELOCITY_LEVEL.trim().split('\n').map(v=>v.trimEnd());
-if(!LEVEL_ROWS.length||LEVEL_ROWS.some(r=>r.length!==LEVEL_ROWS[0].length))throw Error('El mapa ASCII debe ser rectangular.');
+if(!LEVEL_ROWS.length||LEVEL_ROWS.some(r=>r.length!==LEVEL_ROWS[0].length))throw Error('The ASCII level map must be rectangular.');
 const COLS=LEVEL_ROWS[0].length, WORLD_W=COLS*TILE;
 const stageLimit=28*TILE;
 const entities={solids:[],platforms:[],walls:[],spikes:[],springs:[],rings:[],enemies:[],ramps:[],flag:null,start:null};
@@ -41,7 +41,7 @@ for(let row=0;row<LEVEL_ROWS.length;row++)for(let col=0;col<COLS;col++){
   case 'P':entities.start={x:x+TILE/2,y:(row+1)*TILE};break;
   }
 }
-if(!entities.start||!entities.flag)throw Error('El mapa requiere P (inicio) y F (bandera).');
+if(!entities.start||!entities.flag)throw Error('The level map must contain P (start) and F (finish flag).');
 let state='menu',player,camera=0,elapsed=0,frames=0,previous=0,lastGroundTime=-1,inputBufferUntil=-1;
 let restarts=0,collected=0,jumps=0,attempts=0,direction=1,chargeAt=null,particles=[],audioCtx=null;
 let showGuides=true,shudder=0;
@@ -110,7 +110,7 @@ function move(dt){
   particles=particles.filter(p=>p.life>0);
   el('progressBar').style.width=`${100*(player.x/WORLD_W)}%`;
 }
-function finish(){state='win';document.body.classList.remove('playing');overlay.classList.remove('hidden');el('modalTitle').textContent='¡Nivel completado!';el('modalText').textContent=`Tiempo: ${elapsed.toFixed(1)} s · Anillos: ${collected}/${totalRings} · Reinicios: ${restarts}.`;el('modalExtra').textContent='Las tres secciones forman un único nivel. Cambia el mapa en level-map.js o las constantes en game.js.';el('play').textContent='Jugar de nuevo';sound(1050,.35)}
+function finish(){state='win';document.body.classList.remove('playing');overlay.classList.remove('hidden');el('modalTitle').textContent='Level Complete!';el('modalText').textContent=`Time: ${elapsed.toFixed(1)} s · Rings: ${collected}/${totalRings} · Restarts: ${restarts}.`;el('modalExtra').textContent='The three sections form one continuous level. Edit the map in level-map.js or physics constants in game.js.';el('play').textContent='Play Again';sound(1050,.35)}
 function start(){if(state==='win')init(true);state='playing';overlay.classList.add('hidden');document.body.classList.add('playing');previous=0}
 function roundRect(x,y,w,h,r,fill,stroke){ctx.beginPath();ctx.roundRect(x,y,w,h,r);if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=2;ctx.stroke()}}
 function sky(){const sec=clamp(Math.floor((camera+VIEW_WIDTH*.45)/stageLimit),0,2),pal=ambient[sec],g=ctx.createLinearGradient(0,0,0,VIEW_HEIGHT);g.addColorStop(0,pal[0]);g.addColorStop(.7,pal[1]);g.addColorStop(1,pal[2]);ctx.fillStyle=g;ctx.fillRect(0,0,VIEW_WIDTH,VIEW_HEIGHT);
@@ -147,7 +147,7 @@ const held=new Set();window.addEventListener('keydown',e=>{const k=e.key.toLower
  if(k===' '||k==='arrowup'||k==='w')jumpInput();if(k==='c')startCharge();if(k==='r'){if(state==='playing'){attempts++;resetAfterHazard()}else if(state==='win'){init(true);start()}}if(k==='h')showGuides=!showGuides;if(k==='enter'&&state!=='playing')start();});
 window.addEventListener('keyup',e=>{const k=e.key.toLowerCase();held.delete(k);if(k==='c')releaseCharge()});
 window.addEventListener('blur',()=>{held.clear();chargeAt=null});
-el('play').addEventListener('click',start);el('restart').addEventListener('click',()=>{init(true);state='menu';overlay.classList.remove('hidden');el('modalTitle').textContent='Velocity: Momentum Rush';el('modalText').textContent='Tres secciones conectadas. Descubre las reglas del salto, cruza los peligros y alcanza la bandera.';el('play').textContent='Comenzar'});
+el('play').addEventListener('click',start);el('restart').addEventListener('click',()=>{init(true);state='menu';overlay.classList.remove('hidden');el('modalTitle').textContent='Velocity: Momentum Rush';el('modalText').textContent='Three connected sections. Discover how to jump, cross the hazards, and reach the flag.';el('play').textContent='Start';el('modalExtra').textContent='The level teaches through shapes, colors, and movement. There are no written instructions during gameplay.'});
 init(true);requestAnimationFrame(frame);
 // Development-only inspector for automatic smoke tests and classroom debugging.
 window.VelocityDebug={get state(){return{mode:state,x:player.x,y:player.feet,camera,restarts,elapsed,collected,worldWidth:WORLD_W}},

@@ -39,14 +39,14 @@ The level is designed to teach primarily **through gameplay instead of written i
 | `R` | Restart the run. |
 | `H` | Show or hide nonverbal visual guides. |
 
-The title screen also displays the main controls. The interface currently uses Spanish labels; select **Comenzar** to begin.
+The title screen displays the main controls in English. Select **Start** to begin.
 
 ## How to Run
 
 1. Download or clone this repository.
 2. Keep `index.html`, `game.js`, `level-map.js`, and `style.css` in the same folder.
 3. Open **`index.html`** using a desktop browser such as Chrome or Edge.
-4. Select **Comenzar** on the title screen.
+4. Select **Start** on the title screen.
 
 No installation, build process, or external dependencies are required. The project can also be hosted on GitHub Pages.
 
