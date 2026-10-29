@@ -1,56 +1,88 @@
-# Velocity: Momentum Rush — Actividad 03
+# Velocity: Momentum Rush
 
-**Prototipo digital de plataformas 2D** basado en la Actividad 02 de Diseño de Videojuegos. Una sola experiencia con **tres secciones conectadas** (introducción, desarrollo + variación, conclusión). Hecho con **HTML5 Canvas, CSS y JavaScript nativo**; **no usa** Phaser, Three.js, KAPLAY ni dependencias externas.
+**Velocity: Momentum Rush** is a browser-based 2D platform game adapted from a three-screen physical prototype. The player advances primarily by jumping, rather than walking freely, and learns how to use movement mechanics through the level's layout, colors, hazards, and rewards.
 
-## Enfoque principal: DISEÑO DE NIVELES (Actividad 03)
+The game was built with **HTML5 Canvas, CSS, and vanilla JavaScript**. It does not require Phaser, Three.js, KAPLAY, or any external libraries.
 
-La evaluación prioriza **cómo el escenario enseña a jugar** y la transición del prototipo físico a su versión digital. La estructura de aprendizaje es: **introducción segura → desarrollo con riesgo → variación con elección de ruta → conclusión que combina habilidades**.
+## Objective
 
-- **Introducción:** una pared gris obliga a descubrir el salto cargado sin castigo.
-- **Desarrollo:** un foso de pinchos requiere aplicar ese salto y un muelle agrega una interacción nueva.
-- **Variación:** rampa + anillos opcionales arriba / enemigo abajo = elección de riesgo y recompensa.
-- **Conclusión:** rampa, muelle y bandera exigen combinar las habilidades previamente enseñadas.
+Reach the **green flag** at the end of the level. Use normal jumps, charged jumps, and springs to cross obstacles. Collecting golden rings is optional.
 
+Touching spikes or an enemy, or falling into a gap, restarts the run quickly.
 
-## Ejecutar
+## Gameplay Mechanics
 
-1. Descarga o descomprime todos los archivos del proyecto juntos.
-2. Abre `index.html` en Chrome o Edge. También puedes publicarlo sin configuración adicional en GitHub Pages.
-3. Selecciona **Comenzar** en la pantalla de título.
+- **Normal jump:** A short jump covering approximately two grid squares.
+- **Charged Dash Jump:** Hold the charge key, then release it to jump higher and farther.
+- **Spring:** A red spring launches the character automatically when landed on.
+- **Hazards:** Spikes, gaps, and a moving enemy punish poorly timed jumps.
+- **Optional rings:** Rewards placed to encourage exploration and risk-taking; they are not required to finish.
+- **Visual cues:** Shapes, contrasting colors, and optional nonverbal guides help players discover where to jump.
 
-## Controles
+## Level Design
 
-| Tecla | Acción |
+The game consists of **one continuous level divided into three connected sections**:
+
+1. **Introduction — Learn safely:** A gray wall introduces the charged jump without an immediate hazard. Players can experiment with jump distance.
+2. **Development and twist — Apply and explore:** A spike pit tests the charged jump, a spring introduces another movement interaction, and a ramp creates a choice between an upper route with optional rings and a lower route with an enemy.
+3. **Conclusion — Combine skills:** A ramp, spring, and final hazards challenge players to apply the mechanics they have already learned to reach the flag.
+
+The level is designed to teach primarily **through gameplay instead of written instructions**.
+
+## Controls
+
+| Key | Action |
 |---|---|
-| `←` / `→` | Elegir hacia qué lado saltar; el personaje **no camina libremente** |
-| `ESPACIO` | Salto normal (aproximadamente dos cuadros de distancia) |
-| Mantener `C` ≥ 0,32 s, luego soltar | Salto cargado, más largo y alto |
-| `R` | Reiniciar el recorrido de inmediato |
-| `H` | Activar o desactivar guías **puramente visuales**, sin texto |
+| `←` / `→` | Select the direction of the next jump (the character does **not** walk freely). |
+| `Space` | Normal jump. |
+| Hold `C` for at least **0.32 seconds**, then release | Charged Dash Jump. |
+| `R` | Restart the run. |
+| `H` | Show or hide nonverbal visual guides. |
 
-El muelle rojo impulsa al jugador de manera automática al aterrizar sobre él. Los anillos son recompensas opcionales. Los pinchos, las caídas y el enemigo provocan un reinicio rápido.
+The title screen also displays the main controls. The interface currently uses Spanish labels; select **Comenzar** to begin.
 
-## Mapa separado de la lógica
+## How to Run
 
-El nivel está definido como **texto ASCII** en `level-map.js`, independiente del motor (`game.js`). Cada fila es una hilera de la cuadrícula y cada símbolo ocupa 40 × 40 px.
+1. Download or clone this repository.
+2. Keep `index.html`, `game.js`, `level-map.js`, and `style.css` in the same folder.
+3. Open **`index.html`** using a desktop browser such as Chrome or Edge.
+4. Select **Comenzar** on the title screen.
 
-| Símbolo | Significado |
+No installation, build process, or external dependencies are required. The project can also be hosted on GitHub Pages.
+
+## Project Files
+
+| File | Purpose |
 |---|---|
-| `.` | Celda vacía |
-| `#` | Terreno sólido |
-| `W` | Muro seguro para la enseñanza inicial |
-| `^` | Pinchos peligrosos |
-| `S` | Muelle rojo |
-| `O` | Anillo opcional |
-| `E` | Enemigo patrulla |
-| `/` | Segmento de rampa ascendente |
-| `=` | Plataforma elevada |
-| `F` | Meta / bandera |
-| `P` | Posición inicial |
+| `index.html` | Game page, canvas, and title/end interface. |
+| `style.css` | Page layout and visual styling. |
+| `game.js` | Movement, physics, collisions, camera, sounds, and game logic. |
+| `level-map.js` | **Editable text map** containing the level layout. |
+| `README.md` | This guide. |
 
-## Física agrupada al inicio
+## How to Edit the Level Map
 
-En la parte superior de `game.js` encontrarás el objeto `PHYSICS`:
+Open **`level-map.js`** in a text editor. The level is stored as an **ASCII map**: each character represents one **40 × 40 pixel** grid cell.
+
+| Symbol | Element |
+|---|---|
+| `.` | Empty space |
+| `#` | Solid ground |
+| `W` | Safe introductory wall |
+| `^` | Spikes |
+| `S` | Red spring |
+| `O` | Optional ring |
+| `E` | Patrolling enemy |
+| `/` | Upward ramp segment |
+| `=` | Elevated platform |
+| `F` | Finish flag |
+| `P` | Starting position |
+
+For example, replace an empty cell (`.`) with `O` to add a ring, then save the file and refresh the browser. **Keep every row the same length** so the map remains rectangular. The existing map represents three connected sections of 28 columns each.
+
+## How to Adjust Game Physics
+
+The `PHYSICS` object is located near the beginning of **`game.js`**. You can edit its values to change how movement feels:
 
 ```js
 const PHYSICS = Object.freeze({
@@ -68,29 +100,15 @@ const PHYSICS = Object.freeze({
 });
 ```
 
-## Requisitos evaluables
+For example, increase `NORMAL_JUMP_HEIGHT` to make the normal jump higher, or change `ENEMY_SPEED` to adjust the enemy's movement. Save `game.js` and refresh the page to apply your changes.
 
-- Tres secciones conectadas en un único nivel de desplazamiento lateral, con una cámara que sigue la acción.
-- Introducción segura, dificultad progresiva, variación, recompensa opcional y final que integra mecánicas.
-- Dos peligros diferentes: pinchos y enemigo móvil; también hay huecos y caídas.
-- Mecánica conservada del prototipo: salto normal, **Charged Dash Jump** y muelle.
-- Reinicio inmediato, sonido generado con Web Audio y pistas visuales no verbales.
-- Física ajustable y mapa modificable como texto, ambos separados.
-- Prueba automatizada técnica: llegada a meta en unos 20 segundos. **Este test automático NO reemplaza un playtest humano.**
+## Technologies
 
-## Entregables que están en el paquete completo
+- **HTML5 Canvas:** Draws the game world and character.
+- **CSS:** Styles the page and menus.
+- **JavaScript:** Controls movement, collision detection, camera, and game state.
+- **Web Audio API:** Generates short gameplay sound effects.
 
-- `evidencias/04_vista_general.png`: vista panorámica del nivel completo.
-- `evidencias/01_seccion.png`, `02_seccion.png`, `03_seccion.png`: detalles de cada sección.
-- `evidencias/06_demo_sin_narracion.mp4`: demostración técnica silenciosa **para que grabes tu explicación** (duración aprox. 24 s).
-- `docs/Activity03_Design_Rationale_DRAFT.docx` y `.pdf`: borrador de 3 páginas; completar el playtest humano y los enlaces.
-- `docs/GUIA_PUBLICACION.md`: pasos concretos para GitHub Pages.
-- `docs/PLAYTEST_HUMANO_PENDIENTE.txt`: guía de observación.
-- `docs/GUION_VIDEO.txt`: guion opcional para una grabación de menos de dos minutos.
+## Project Credits
 
-## Autoría y uso de IA
-
-Concepto, estructura física original y decisiones principales de diseño: proyecto de estudiante de la Actividad 02. Implementación del código, documentación y asistencia en revisión técnica: apoyo de ChatGPT. 
-## Fecha de entrega
-
-**30 de octubre de 2026.**
+The original physical prototype, gameplay concept, and main level-design decisions were developed as part of a Video Game Design course project. ChatGPT assisted with the digital code implementation, documentation, and technical review.
